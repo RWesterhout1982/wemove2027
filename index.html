@@ -340,9 +340,25 @@ async function submitM() {
   if (!name) { alert('Kies eerst je naam!'); return; }
   const status = document.getElementById('mstatus').value;
   const note = document.getElementById('mnote').value;
+  const payload = {
+    naam: name,
+    evenement: curEv.title,
+    datum: curEv.date,
+    status: status,
+    opmerking: note,
+    tijdstip: new Date().toLocaleString('nl-NL')
+  };
   try {
-    await fetch(SU, {method:'POST', body:JSON.stringify({naam:name,evenement:curEv.title,datum:curEv.date,status:status,opmerking:note,tijdstip:new Date().toLocaleString('nl-NL')})});
-  } catch(e) {}
+    // Use no-cors to avoid CORS issues with Google Apps Script
+    fetch(SU, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {
+    console.log('Fout:', e);
+  }
   const st = status==='Ja'?'aangemeld ✅':status==='Misschien'?'misschien aanwezig 🤔':'niet aanwezig ❌';
   document.getElementById('moktext').textContent = name+' is '+st+' voor '+curEv.title+(note?'. Opmerking: '+note:'.')+'.';
   document.getElementById('mform').style.display='none';
