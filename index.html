@@ -130,6 +130,16 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--wh);bord
 .mok-ic{font-size:3.5rem;display:block;margin-bottom:.5rem}
 .mok h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--bl);text-transform:uppercase}
 .mok p{font-size:.83rem;color:var(--gy);margin-top:.35rem;line-height:1.5}
+
+.mijn-item{background:var(--wh);border-radius:10px;padding:.85rem 1rem;border:1px solid var(--bo);margin-bottom:.5rem;border-left:4px solid var(--or);box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.mijn-actie{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--tx)}
+.mijn-datum{font-size:.72rem;color:var(--gy);margin-top:.1rem}
+.mijn-status{display:inline-block;margin-top:.4rem;font-size:.78rem;font-weight:600;padding:.2rem .6rem;border-radius:5px;background:rgba(42,122,74,.1);color:var(--gr)}
+.mijn-status.nee{background:rgba(230,51,41,.1);color:var(--rd)}
+.mijn-status.maybe{background:rgba(244,121,32,.1);color:var(--or)}
+.mijn-empty{text-align:center;padding:2rem 1rem;color:var(--gy);font-size:.9rem}
+.mijn-loading{text-align:center;padding:2rem;color:var(--gy);font-size:.85rem}
+
 </style>
 </head>
 <body>
@@ -176,7 +186,7 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--wh);bord
 <div class="agb"><div class="agmeta"><span>🕐 Dinsdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Evelien</strong></div><p class="agdesc">Gezellige bingo avond als actie voor Team WeMove.</p></div>
 </div><div class="agc agc-actie" onclick="tog(this)">
 <div class="agt"><span class="age">🧇</span><div class="agm"><div class="agd">12–16 oktober 2026</div><div class="agti">Stroopwafel verkoop</div></div><span class="agtag" style="background:#F47920">Actie</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Hele week</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Gerben</strong></div><p class="agdesc">Week van de stroopwafel! Help mee met verkopen.</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();openS(1)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Hele week</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Gerben</strong></div><p class="agdesc">Week van de stroopwafel! Help mee met verkopen.</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-actie" onclick="tog(this)">
 <div class="agt"><span class="age">🍺</span><div class="agm"><div class="agd">Vr 25 mei 2026</div><div class="agti">Vrijdagmiddagborrel De Duyf</div></div><span class="agtag" style="background:#F47920">Actie</span></div>
 <div class="agb"><div class="agmeta"><span>🕐 Vrijdagmiddag</span><span><a href="https://maps.google.com/?q=De+Duyf+s-Gravendeel" target="_blank" style="color:#F47920;font-weight:600;text-decoration:none;">📍 De Duyf</a></span></div><div class="kt">👤 Kartrekker: <strong>Evelien</strong></div><p class="agdesc">Vrijdagmiddagborrel bij De Duyf als actie voor Team WeMove.</p></div>
@@ -185,31 +195,31 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--wh);bord
 <div class="agb"><div class="agmeta"><span>🕐 Vrijdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Danique</strong></div><p class="agdesc">Gezamenlijk etentje en daarna dansen!</p></div>
 </div><div class="agc agc-actie" onclick="tog(this)">
 <div class="agt"><span class="age">🏫</span><div class="agm"><div class="agd">13 + 30 okt 2026</div><div class="agti">Mini-Roparun (sponsorloop)</div></div><span class="agtag" style="background:#F47920">Actie</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 13 okt avond · 30 okt overdag</span><span><a href="https://maps.google.com/?q=Basisschool+De+Gouwerd+Goudswaard" target="_blank" style="color:#F47920;font-weight:600;text-decoration:none;">📍 Basisschool De Gouwerd, Goudswaard</a></span></div><div class="kt">👤 Kartrekker: <strong>Renate</strong></div><p class="agdesc">Sponsorloop bij Basisschool De Gouwerd. Inforondje 13 oktober, mini-Roparun 30 oktober.</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();openS(4)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 13 okt avond · 30 okt overdag</span><span><a href="https://maps.google.com/?q=Basisschool+De+Gouwerd+Goudswaard" target="_blank" style="color:#F47920;font-weight:600;text-decoration:none;">📍 Basisschool De Gouwerd, Goudswaard</a></span></div><div class="kt">👤 Kartrekker: <strong>Renate</strong></div><p class="agdesc">Sponsorloop bij Basisschool De Gouwerd. Inforondje 13 oktober, mini-Roparun 30 oktober.</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-training" onclick="tog(this)">
 <div class="agt"><span class="age">🏃</span><div class="agm"><div class="agd">Vr 6 nov 2026</div><div class="agti">Training 1</div></div><span class="agtag" style="background:#2a7a4a">Training</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Vrijdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Ronnie</strong></div><p class="agdesc">Eerste groepstraining van het seizoen.</p><button class="agbtn" style="background:#2a7a4a" onclick="event.stopPropagation();openS(5)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Vrijdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Ronnie</strong></div><p class="agdesc">Eerste groepstraining van het seizoen.</p><button class="agbtn" style="background:#2a7a4a" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-vergadering" onclick="tog(this)">
 <div class="agt"><span class="age">🥂</span><div class="agm"><div class="agd">Vr 15 jan 2027</div><div class="agti">Nieuwjaarsborrel + Teamvergadering</div></div><span class="agtag" style="background:#1B3F7B">Vergadering</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Vrijdagavond</span><span><a href="https://maps.google.com/?q=Nijverheidsweg+2+3295+KZ+s-Gravendeel" target="_blank" style="color:#1B3F7B;font-weight:600;text-decoration:none;">📍 Loods van Ton, 's-Gravendeel</a></span></div><div class="kt">👤 Kartrekker: <strong>Elize</strong></div><p class="agdesc">Eerste teamvergadering van het jaar met gezellige nieuwjaarsborrel.</p><button class="agbtn" style="background:#1B3F7B" onclick="event.stopPropagation();openS(6)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Vrijdagavond</span><span><a href="https://maps.google.com/?q=Nijverheidsweg+2+3295+KZ+s-Gravendeel" target="_blank" style="color:#1B3F7B;font-weight:600;text-decoration:none;">📍 Loods van Ton, 's-Gravendeel</a></span></div><div class="kt">👤 Kartrekker: <strong>Elize</strong></div><p class="agdesc">Eerste teamvergadering van het jaar met gezellige nieuwjaarsborrel.</p><button class="agbtn" style="background:#1B3F7B" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-training" onclick="tog(this)">
 <div class="agt"><span class="age">🏃</span><div class="agm"><div class="agd">Za 6 mrt 2027</div><div class="agti">Training 2</div></div><span class="agtag" style="background:#2a7a4a">Training</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Zaterdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Ronnie</strong></div><p class="agdesc">Groepstraining voor lopers en fietsers.</p><button class="agbtn" style="background:#2a7a4a" onclick="event.stopPropagation();openS(7)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Zaterdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Ronnie</strong></div><p class="agdesc">Groepstraining voor lopers en fietsers.</p><button class="agbtn" style="background:#2a7a4a" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-training" onclick="tog(this)">
 <div class="agt"><span class="age">🏃</span><div class="agm"><div class="agd">Zo 4 apr 2027</div><div class="agti">Training 3</div></div><span class="agtag" style="background:#2a7a4a">Training</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Zondagmiddag</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Ronnie</strong></div><p class="agdesc">Groepstraining voor lopers en fietsers.</p><button class="agbtn" style="background:#2a7a4a" onclick="event.stopPropagation();openS(8)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Zondagmiddag</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Ronnie</strong></div><p class="agdesc">Groepstraining voor lopers en fietsers.</p><button class="agbtn" style="background:#2a7a4a" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-vergadering" onclick="tog(this)">
 <div class="agt"><span class="age">🍕</span><div class="agm"><div class="agd">Wo 14 apr 2027</div><div class="agti">Teamvergadering + Pizza & borrel</div></div><span class="agtag" style="background:#1B3F7B">Vergadering</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Woensdagavond</span><span>📍 Nader te bepalen</span></div><p class="agdesc">Teamvergadering voor het weekend. Vooraf pizza, daarna borrel!</p><button class="agbtn" style="background:#1B3F7B" onclick="event.stopPropagation();openS(9)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Woensdagavond</span><span>📍 Nader te bepalen</span></div><p class="agdesc">Teamvergadering voor het weekend. Vooraf pizza, daarna borrel!</p><button class="agbtn" style="background:#1B3F7B" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-roparun" onclick="tog(this)">
 <div class="agt"><span class="age">🚗</span><div class="agm"><div class="agd">Vr 14 mei 2027</div><div class="agti">Vertrek naar Enschede</div></div><span class="agtag" style="background:#E63329">Roparun</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Vrijdag</span><span><a href="https://maps.google.com/?q=Nijverheidsweg+2+3295+KZ+s-Gravendeel" target="_blank" style="color:#E63329;font-weight:600;text-decoration:none;">📍 Loods Ton, 's-Gravendeel</a></span></div><p class="agdesc">Vertrek vanuit 's-Gravendeel richting startlocatie.</p><button class="agbtn" style="background:#E63329" onclick="event.stopPropagation();openS(10)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Vrijdag</span><span><a href="https://maps.google.com/?q=Nijverheidsweg+2+3295+KZ+s-Gravendeel" target="_blank" style="color:#E63329;font-weight:600;text-decoration:none;">📍 Loods Ton, 's-Gravendeel</a></span></div><p class="agdesc">Vertrek vanuit 's-Gravendeel richting startlocatie.</p><button class="agbtn" style="background:#E63329" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div><div class="agc agc-roparun" onclick="tog(this)">
 <div class="agt"><span class="age">🏁</span><div class="agm"><div class="agd">15–17 mei 2027</div><div class="agti">Roparun 2027</div></div><span class="agtag" style="background:#E63329">Roparun</span></div>
 <div class="agb"><div class="agmeta"><span>🕐 Pinksterweekend</span><span><a href="https://maps.google.com/?q=Vliegveldweg+345+7524+PT+Enschede" target="_blank" style="color:#E63329;font-weight:600;text-decoration:none;">📍 Enschede → Rotterdam</a></span></div><p class="agdesc">De Run op het Leven! Van Vliegveld Twenthe naar Rotterdam Coolsingel.</p></div>
 </div><div class="agc agc-actie" onclick="tog(this)">
 <div class="agt"><span class="age">🔥</span><div class="agm"><div class="agd">Zomer 2027</div><div class="agti">BBQ Slotfeest</div></div><span class="agtag" style="background:#F47920">Actie</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Datum volgt</span><span>📍 Nader te bepalen</span></div><p class="agdesc">Slotfeest BBQ om het seizoen af te sluiten.</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();openS(12)">✋ Aanmelden</button></div>
+<div class="agb"><div class="agmeta"><span>🕐 Datum volgt</span><span>📍 Nader te bepalen</span></div><p class="agdesc">Slotfeest BBQ om het seizoen af te sluiten.</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button></div>
 </div></div>
 </div>
 
@@ -236,33 +246,50 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--wh);bord
 <div class="acth"><span>🎯</span><strong>Bingo avond</strong></div>
 <div class="actd">Di 8 sep 2026 · Dinsdagavond · 📍 Nader te bepalen</div>
 <div class="kt">👤 Kartrekker: <strong>Evelien</strong></div><p class="actdesc">Gezellige bingo avond als actie voor Team WeMove.</p>
-<button class="actbtn" onclick="openS(0)">✋ Aanmelden</button>
+<button class="actbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button>
 </div><div class="actc">
 <div class="acth"><span>🧇</span><strong>Stroopwafel verkoop</strong></div>
 <div class="actd">12–16 oktober 2026 · Hele week · 📍 Nader te bepalen</div>
 <div class="kt">👤 Kartrekker: <strong>Gerben</strong></div><p class="actdesc">Week van de stroopwafel! Help mee met verkopen.</p>
-<button class="actbtn" onclick="openS(1)">✋ Aanmelden</button>
+<button class="actbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button>
 </div><div class="actc">
 <div class="acth"><span>🍺</span><strong>Vrijdagmiddagborrel De Duyf</strong></div>
 <div class="actd">Vr 25 mei 2026 · Vrijdagmiddag · <a href="https://maps.google.com/?q=De+Duyf+s-Gravendeel" target="_blank" style="color:var(--orange);font-weight:600;text-decoration:none;">📍 De Duyf</a></div>
 <div class="kt">👤 Kartrekker: <strong>Evelien</strong></div><p class="actdesc">Vrijdagmiddagborrel bij De Duyf als actie voor Team WeMove.</p>
-<button class="actbtn" onclick="openS(2)">✋ Aanmelden</button>
+<button class="actbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button>
 </div><div class="actc">
 <div class="acth"><span>🕺</span><strong>We Movers etentje & dansen</strong></div>
 <div class="actd">Vr 23 okt 2026 · Vrijdagavond · 📍 Nader te bepalen</div>
 <div class="kt">👤 Kartrekker: <strong>Danique</strong></div><p class="actdesc">Gezamenlijk etentje en daarna dansen!</p>
-<button class="actbtn" onclick="openS(3)">✋ Aanmelden</button>
+<button class="actbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button>
 </div><div class="actc">
 <div class="acth"><span>🏫</span><strong>Mini-Roparun (sponsorloop)</strong></div>
 <div class="actd">13 + 30 okt 2026 · 13 okt avond · 30 okt overdag · <a href="https://maps.google.com/?q=Basisschool+De+Gouwerd+Goudswaard" target="_blank" style="color:var(--orange);font-weight:600;text-decoration:none;">📍 Basisschool De Gouwerd, Goudswaard</a></div>
 <div class="kt">👤 Kartrekker: <strong>Renate</strong></div><p class="actdesc">Sponsorloop bij Basisschool De Gouwerd. Inforondje 13 oktober, mini-Roparun 30 oktober.</p>
-<button class="actbtn" onclick="openS(4)">✋ Aanmelden</button>
+<button class="actbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button>
 </div><div class="actc">
 <div class="acth"><span>🔥</span><strong>BBQ Slotfeest</strong></div>
 <div class="actd">Zomer 2027 · Datum volgt · 📍 Nader te bepalen</div>
 <p class="actdesc">Slotfeest BBQ om het seizoen af te sluiten.</p>
-<button class="actbtn" onclick="openS(12)">✋ Aanmelden</button>
+<button class="actbtn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button>
 </div></div>
+</div>
+
+
+<!-- MIJN AANMELDINGEN -->
+<div class="pg" id="pg-mijn">
+  <div class="ph"><div class="phl">Team WeMove 177</div><div class="pht">Mijn <em>Aanmeldingen</em></div></div>
+  <div style="padding:1rem">
+    <div style="background:rgba(244,121,32,.08);border-left:3px solid var(--or);border-radius:8px;padding:.75rem 1rem;font-size:.83rem;margin-bottom:1rem;line-height:1.5">
+      💡 Kies je naam om te zien waarvoor je bent aangemeld.
+    </div>
+    <label style="font-size:.75rem;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:.4rem">Jouw naam</label>
+    <select id="mijnNaam" onchange="laadAanmeldingen()" style="width:100%;padding:.7rem .85rem;border:1.5px solid var(--bo);border-radius:9px;font-size:.95rem;font-family:Barlow,sans-serif;color:var(--tx);outline:none;-webkit-appearance:none;background:#fff;margin-bottom:1rem">
+      <option value="">— Kies je naam —</option>
+      <option value="Ary">Ary</option><option value="Bas">Bas</option><option value="Danique">Danique</option><option value="Dirk-Jan">Dirk-Jan</option><option value="Elize">Elize</option><option value="Esther">Esther</option><option value="Fee">Fee</option><option value="Fleur">Fleur</option><option value="Gerben">Gerben</option><option value="Henriette">Henriette</option><option value="Jarco">Jarco</option><option value="Marlies">Marlies</option><option value="Monique">Monique</option><option value="Niels">Niels</option><option value="Renate">Renate</option><option value="Rob">Rob</option><option value="Ron">Ron</option><option value="Sanne">Sanne</option><option value="Sophie">Sophie</option><option value="Tim">Tim</option><option value="Ton">Ton</option><option value="Vera">Vera</option>
+    </select>
+    <div id="mijnLijst"></div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -272,6 +299,7 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--wh);bord
   <button class="nb" data-p="team" onclick="go('team')"><span class="ic">👥</span>Team</button>
   <button class="nb" data-p="route" onclick="go('route')"><span class="ic">🗺️</span>Route</button>
   <button class="nb" data-p="acties" onclick="go('acties')"><span class="ic">💰</span>Acties</button>
+  <button class="nb" data-p="mijn" onclick="go('mijn')"><span class="ic">👤</span>Mijn</button>
 </nav>
 
 <!-- MODAL -->
@@ -364,6 +392,82 @@ async function submitM() {
   document.getElementById('mform').style.display='none';
   document.getElementById('mok').style.display='block';
 }
+
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGflhZzn_fxo9M1NMTZBHq3nvAqTfUnb7OWwkPrJxNmNYxgW0Zjp7lGzdYC-NQ9w9AGn_JM-PivI3s/pub?output=csv';
+const PROXY = 'https://corsproxy.io/?';
+
+async function laadAanmeldingen() {
+  const naam = document.getElementById('mijnNaam').value;
+  const lijst = document.getElementById('mijnLijst');
+  if (!naam) { lijst.innerHTML = ''; return; }
+  
+  lijst.innerHTML = '<div class="mijn-loading">⏳ Aanmeldingen laden...</div>';
+  
+  try {
+    const resp = await fetch(PROXY + encodeURIComponent(CSV_URL));
+    const text = await resp.text();
+    const rows = text.trim().split('\n').slice(1);
+    
+    const mijn = rows.filter(row => {
+      const cols = parseCSVRow(row);
+      return cols[1] && cols[1].trim() === naam;
+    });
+    
+    if (mijn.length === 0) {
+      lijst.innerHTML = '<div class="mijn-empty">📋 Nog geen aanmeldingen gevonden voor ' + naam + '.</div>';
+      return;
+    }
+    
+    let out = '<div style="font-size:.75rem;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.6rem">' + mijn.length + ' aanmelding(en) gevonden</div>';
+    
+    mijn.reverse().forEach(row => {
+      const cols = parseCSVRow(row);
+      const tijdstip = cols[0] || '';
+      const actie = cols[2] || '';
+      const datum = cols[3] || '';
+      const status = cols[4] || '';
+      const opmerking = cols[5] || '';
+      
+      let statusCls = '';
+      let statusIcon = '';
+      if (status.toLowerCase().includes('ja')) { statusCls=''; statusIcon='✅ '; }
+      else if (status.toLowerCase().includes('nee')) { statusCls=' nee'; statusIcon='❌ '; }
+      else { statusCls=' maybe'; statusIcon='🤔 '; }
+      
+      out += '<div class="mijn-item">';
+      out += '<div class="mijn-actie">' + actie + '</div>';
+      if (datum) out += '<div class="mijn-datum">📅 ' + datum + '</div>';
+      out += '<div class="mijn-status' + statusCls + '">' + statusIcon + status + '</div>';
+      if (opmerking) out += '<div style="font-size:.78rem;color:var(--gy);margin-top:.3rem">💬 ' + opmerking + '</div>';
+      if (tijdstip) out += '<div style="font-size:.65rem;color:var(--bo);margin-top:.3rem">Ingevuld: ' + tijdstip + '</div>';
+      out += '</div>';
+    });
+    
+    lijst.innerHTML = out;
+  } catch(err) {
+    lijst.innerHTML = '<div class="mijn-empty">❌ Kon aanmeldingen niet laden. Probeer het opnieuw.</div>';
+    console.log(err);
+  }
+}
+
+function parseCSVRow(row) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < row.length; i++) {
+    if (row[i] === '"') {
+      inQuotes = !inQuotes;
+    } else if (row[i] === ',' && !inQuotes) {
+      result.push(current.trim());
+      current = '';
+    } else {
+      current += row[i];
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
+
 </script>
 </body>
 </html>
