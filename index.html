@@ -423,10 +423,10 @@ async function laadAanmeldingen() {
     mijn.reverse().forEach(row => {
       const cols = parseCSVRow(row);
       const tijdstip = cols[0] || '';
-      const actie = cols[2] || '';
-      const datum = cols[3] || '';
-      const status = cols[4] || '';
-      const opmerking = cols[5] || '';
+      const actie = cols[4] || '';
+      const datum = '';
+      const status = cols[2] || '';
+      const opmerking = cols[3] || '';
       
       let statusCls = '';
       let statusIcon = '';
