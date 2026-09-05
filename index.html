@@ -216,7 +216,11 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--wh);bord
 </div>
 <div class="agc agc-actie" data-type="actie" onclick="tog(this,event)">
 <div class="agt"><span class="age">🕺</span><div class="agm"><div class="agd">Vr 23 oktober 2026</div><div class="agti">We Movers etentje & dansen</div></div><span class="agtag" style="background:#F47920">Actie</span></div>
-<div class="agb"><div class="agmeta"><span>🕐 Vrijdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Danique</strong></div><p class="agdesc">Gewoon gezellig met het team wat leuks doen — etentje en dansen!</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button><button class="deeln-btn" onclick="event.stopPropagation();toonDeelnemers('Etentje', this)">👥 Bekijk wie zich heeft aangemeld</button><div class="deeln-list"></div></div>
+<div class="agb"><div class="agmeta"><span>🕐 Vrijdagavond</span><span>📍 Nader te bepalen</span></div><div class="kt">👤 Kartrekker: <strong>Danique</strong></div><p class="agdesc">Gewoon gezellig met het team wat leuks doen — etentje en dansen!</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button><button class="deeln-btn" onclick="event.stopPropagation();toonDeelnemers('Etentje', this)">👥 Bekijk wie zich heeft aangemeld</button><div class="deeln-list"></div>
+<div class="agc agc-actie" data-type="actie" onclick="tog(this,event)">
+<div class="agt"><span class="age">🎳</span><div class="agm"><div class="agd">Za 24 oktober 2026</div><div class="agti">Jeu de boules toernooi</div></div><span class="agtag" style="background:#F47920">Actie</span></div>
+<div class="agb"><div class="agmeta"><span>🕐 13:00 – 17:00</span><span><a href="https://maps.google.com/?q=Sportlaan+6+Puttershoek" target="_blank" style="color:#F47920;font-weight:600;text-decoration:none;">📍 Sportlaan 6, Puttershoek</a></span></div><p class="agdesc">Gezellig jeu de boules toernooi met het team!</p><button class="agbtn" style="background:#F47920" onclick="event.stopPropagation();window.open('https://docs.google.com/forms/d/e/1FAIpQLSemqmoxeFPRfdAsMuBSaLtHQ5rIGRcQavZopjV55quBEOSbOg/viewform','_blank')">✋ Aanmelden</button><button class="deeln-btn" onclick="event.stopPropagation();toonDeelnemers('Jeu de boules', this)">👥 Bekijk wie zich heeft aangemeld</button><div class="deeln-list"></div></div>
+</div></div>
 </div>
 <div class="agc agc-actie" data-type="actie" onclick="tog(this,event)">
 <div class="agt"><span class="age">🏫</span><div class="agm"><div class="agd">Vr 30 oktober 2026</div><div class="agti">Mini-Roparun (sponsorloop)</div></div><span class="agtag" style="background:#F47920">Actie</span></div>
@@ -486,12 +490,37 @@ async function toonDeelnemers(actienaam, btnEl) {
       wrap.innerHTML = '<div class="deeln-loading">Nog niemand aangemeld.</div>';
       return;
     }
+
+    if (actienaam === 'Stroopwafel') {
+      const dagvolgorde = ['maandag 12','dinsdag 13','woensdag 14','donderdag 15','vrijdag 16'];
+      const dagen = {};
+      filtered.forEach(r => {
+        const actie = (r.actie||'').toLowerCase();
+        let dag = r.actie;
+        if (!dagen[dag]) dagen[dag] = [];
+        if ((r.aanwezig||'').toLowerCase().includes('ja')) dagen[dag].push(r.naam||'');
+      });
+      let out = '';
+      dagvolgorde.forEach(d => {
+        const key = Object.keys(dagen).find(k => k.toLowerCase().includes(d));
+        if (key && dagen[key].length > 0) {
+          out += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;color:var(--bl);margin:.6rem 0 .3rem">' + key + '</div>';
+          dagen[key].forEach(naam => {
+            out += '<div class="deeln-item"><span>' + naam + '</span><span class="deeln-ja">✅ Ja</span></div>';
+          });
+        }
+      });
+      if (!out) out = '<div class="deeln-loading">Nog niemand aangemeld.</div>';
+      wrap.innerHTML = out;
+      return;
+    }
+
     let out = '';
     filtered.forEach(r => {
       const s = (r.aanwezig||'').toLowerCase();
       const cls = s.includes('ja') ? 'deeln-ja' : s.includes('nee') ? 'deeln-nee' : 'deeln-maybe';
       const icon = s.includes('ja') ? '✅' : s.includes('nee') ? '❌' : '🤔';
-      out += '<div class="deeln-item"><span>' + (r.naam||'') + (r.opmerking ? ' <span style="color:var(--gy);font-size:.72rem">· ' + r.opmerking + '</span>' : '') + '</span><div style="text-align:right"><span class="' + cls + '">' + icon + ' ' + (r.aanwezig||'') + '</span>' + (r.tijdstip ? '<div style="font-size:.62rem;color:var(--bo);">' + r.tijdstip + '</div>' : '') + '</div></div>';
+      out += '<div class="deeln-item"><span>' + (r.naam||'') + (r.opmerking ? ' <span style="color:var(--gy);font-size:.72rem">· ' + r.opmerking + '</span>' : '') + '</span><span class="' + cls + '">' + icon + ' ' + (r.aanwezig||'') + '</span></div>';
     });
     wrap.innerHTML = out;
   } catch(e) {
