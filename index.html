@@ -329,7 +329,7 @@ nav{position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--wh);bord
 
 <script>
 const AG = [{"id": 0, "emoji": "🎯", "type": "actie", "title": "Bingo avond", "date": "Di 8 sep 2026"}, {"id": 1, "emoji": "🧇", "type": "actie", "title": "Stroopwafel verkoop", "date": "12–16 oktober 2026"}, {"id": 2, "emoji": "🍺", "type": "actie", "title": "Vrijdagmiddagborrel De Duyf", "date": "Vr 25 mei 2026"}, {"id": 3, "emoji": "🕺", "type": "actie", "title": "We Movers etentje & dansen", "date": "Vr 23 okt 2026"}, {"id": 4, "emoji": "🏫", "type": "actie", "title": "Mini-Roparun (sponsorloop)", "date": "13 + 30 okt 2026"}, {"id": 5, "emoji": "🏃", "type": "training", "title": "Training 1", "date": "Vr 6 nov 2026"}, {"id": 6, "emoji": "🥂", "type": "vergadering", "title": "Nieuwjaarsborrel + Teamvergadering", "date": "Vr 15 jan 2027"}, {"id": 7, "emoji": "🏃", "type": "training", "title": "Training 2", "date": "Za 6 mrt 2027"}, {"id": 8, "emoji": "🏃", "type": "training", "title": "Training 3", "date": "Zo 4 apr 2027"}, {"id": 9, "emoji": "🍕", "type": "vergadering", "title": "Teamvergadering + Pizza & borrel", "date": "Wo 14 apr 2027"}, {"id": 10, "emoji": "🚗", "type": "roparun", "title": "Vertrek naar Enschede", "date": "Vr 14 mei 2027"}, {"id": 11, "emoji": "🏁", "type": "roparun", "title": "Roparun 2027", "date": "15–17 mei 2027"}, {"id": 12, "emoji": "🔥", "type": "actie", "title": "BBQ Slotfeest", "date": "Zomer 2027"}];
-const SU = 'https://script.google.com/macros/s/AKfycbzh0KOkBGjT9Q3Tzdu0OFZeFcZpRuCmFdKNADZFqE2t32Sw_RJgfoN8WqM48CEfXqYr/exec';
+const SU = 'https://script.google.com/macros/s/AKfycbyEAwKn6vpJ69PxGwLxperCO6i8VhgKKhMCaWSB8jK3bH1fGoApxgBYMRh4QYlHsp2q/exec';
 let curEv = null;
 
 function go(p) {
@@ -393,8 +393,7 @@ async function submitM() {
   document.getElementById('mok').style.display='block';
 }
 
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGflhZzn_fxo9M1NMTZBHq3nvAqTfUnb7OWwkPrJxNmNYxgW0Zjp7lGzdYC-NQ9w9AGn_JM-PivI3s/pub?output=csv';
-const PROXY = 'https://corsproxy.io/?';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEAwKn6vpJ69PxGwLxperCO6i8VhgKKhMCaWSB8jK3bH1fGoApxgBYMRh4QYlHsp2q/exec';
 
 async function laadAanmeldingen() {
   const naam = document.getElementById('mijnNaam').value;
@@ -404,14 +403,13 @@ async function laadAanmeldingen() {
   lijst.innerHTML = '<div class="mijn-loading">⏳ Aanmeldingen laden...</div>';
   
   try {
-    const resp = await fetch(PROXY + encodeURIComponent(CSV_URL));
-    const text = await resp.text();
-    const rows = text.trim().split('\n').slice(1);
-    
-    const mijn = rows.filter(row => {
-      const cols = parseCSVRow(row);
-      return cols[1] && cols[1].trim() === naam;
+    const resp = await fetch(SCRIPT_URL, {
+      method: 'GET',
+      mode: 'cors',
     });
+    const data = await resp.json();
+    
+    const mijn = data.filter(r => r.naam && r.naam.trim() === naam);
     
     if (mijn.length === 0) {
       lijst.innerHTML = '<div class="mijn-empty">📋 Nog geen aanmeldingen gevonden voor ' + naam + '.</div>';
@@ -420,35 +418,29 @@ async function laadAanmeldingen() {
     
     let out = '<div style="font-size:.75rem;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.6rem">' + mijn.length + ' aanmelding(en) gevonden</div>';
     
-    mijn.reverse().forEach(row => {
-      const cols = parseCSVRow(row);
-      const tijdstip = cols[0] || '';
-      const actie = cols[4] || '';
-      const datum = '';
-      const status = cols[2] || '';
-      const opmerking = cols[3] || '';
-      
+    mijn.reverse().forEach(r => {
       let statusCls = '';
       let statusIcon = '';
-      if (status.toLowerCase().includes('ja')) { statusCls=''; statusIcon='✅ '; }
-      else if (status.toLowerCase().includes('nee')) { statusCls=' nee'; statusIcon='❌ '; }
+      const s = (r.aanwezig || '').toLowerCase();
+      if (s.includes('ja')) { statusCls=''; statusIcon='✅ '; }
+      else if (s.includes('nee')) { statusCls=' nee'; statusIcon='❌ '; }
       else { statusCls=' maybe'; statusIcon='🤔 '; }
       
       out += '<div class="mijn-item">';
-      out += '<div class="mijn-actie">' + actie + '</div>';
-      if (datum) out += '<div class="mijn-datum">📅 ' + datum + '</div>';
-      out += '<div class="mijn-status' + statusCls + '">' + statusIcon + status + '</div>';
-      if (opmerking) out += '<div style="font-size:.78rem;color:var(--gy);margin-top:.3rem">💬 ' + opmerking + '</div>';
-      if (tijdstip) out += '<div style="font-size:.65rem;color:var(--bo);margin-top:.3rem">Ingevuld: ' + tijdstip + '</div>';
+      out += '<div class="mijn-actie">' + (r.actie || '') + '</div>';
+      out += '<div class="mijn-status' + statusCls + '">' + statusIcon + (r.aanwezig || '') + '</div>';
+      if (r.opmerking) out += '<div style="font-size:.78rem;color:var(--gy);margin-top:.3rem">💬 ' + r.opmerking + '</div>';
+      if (r.tijdstip) out += '<div style="font-size:.65rem;color:var(--bo);margin-top:.3rem">Ingevuld: ' + r.tijdstip + '</div>';
       out += '</div>';
     });
     
     lijst.innerHTML = out;
   } catch(err) {
     lijst.innerHTML = '<div class="mijn-empty">❌ Kon aanmeldingen niet laden. Probeer het opnieuw.</div>';
-    console.log(err);
+    console.log('Error:', err);
   }
 }
+
 
 function parseCSVRow(row) {
   const result = [];
