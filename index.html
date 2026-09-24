@@ -271,7 +271,7 @@ Per avond zijn er <strong>2 gesprekken</strong>: om <strong>18:30</strong> en om
 </div>
 
 <a href="https://doodle.com/sign-up-sheet/participate/16a099bf-e174-404c-9d64-8aa451a0f959/select" target="_blank" class="agbtn" style="background:#1B3F7B;display:block;text-align:center;text-decoration:none;margin-top:.5rem" onclick="event.stopPropagation()">📅 Kies jouw tijdslot →</a>
-<button class="deeln-btn" onclick="event.stopPropagation();toonDeelnemers('1-op-1', this)">👥 Bekijk wie zich heeft aangemeld</button>
+<button class="deeln-btn" onclick="event.stopPropagation();toonDeelnemers('1 op 1', this)">👥 Bekijk wie zich heeft aangemeld</button>
 <div class="deeln-list"></div>
 </div>
 </div>
@@ -628,6 +628,25 @@ async function toonDeelnemers(actienaam, btnEl) {
       return;
     }
 
+    if (actienaam === '1 op 1') {
+      // Group by dag + tijdstip
+      const slots = {};
+      filtered.forEach(r => {
+        const slot = (r.actie||'').replace('1 op 1 Gesprekken | ','').trim();
+        if (!slots[slot]) slots[slot] = [];
+        slots[slot].push({naam: r.naam||'', opmerking: r.opmerking||''});
+      });
+      let out = '';
+      Object.keys(slots).sort().forEach(slot => {
+        out += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;color:var(--bl);margin:.6rem 0 .3rem">' + slot + '</div>';
+        slots[slot].forEach(p => {
+          out += '<div class="deeln-item"><span>' + p.naam + (p.opmerking ? ' <span style="color:var(--gy);font-size:.72rem">· ' + p.opmerking + '</span>' : '') + '</span><span class="deeln-ja">✅</span></div>';
+        });
+      });
+      if (!out) out = '<div class="deeln-loading">Nog niemand aangemeld.</div>';
+      wrap.innerHTML = out;
+      return;
+    }
     if (actienaam === 'Stroopwafel') {
       const dagvolgorde = ['maandag 12','dinsdag 13','woensdag 14','donderdag 15','vrijdag 16'];
       const dagen = {};
